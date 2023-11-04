@@ -40,7 +40,7 @@ kos:
           - latest
           - "{{.Tag}}"
           - "{{if not .Prerelease}}stable{{end}}"
-      repository: gitea.thelocal.cf/torinator/chat
+      repository: ghcr.io/torinator/chat
 
 archives:
     - format: tar.gz

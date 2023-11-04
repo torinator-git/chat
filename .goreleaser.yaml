@@ -29,6 +29,8 @@ nfpms:
           - "deb"
           - "rpm"
           - "archlinux"
+      dependencies:
+          - "tor"
 
 archives:
     - format: tar.gz

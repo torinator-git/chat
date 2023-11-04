@@ -32,6 +32,16 @@ nfpms:
       dependencies:
           - "tor"
 
+kos:
+    - platforms:
+          - "linux/amd64"
+          - "linux/arm64"
+      tags:
+          - latest
+          - "{{.Tag}}"
+          - "{{if not .Prerelease}}stable{{end}}"
+      repository: gitea.thelocal.cf/torinator/chattest
+
 archives:
     - format: tar.gz
       name_template: >-
@@ -52,3 +62,7 @@ changelog:
         exclude:
             - "^docs:"
             - "^test:"
+
+gitea_urls:
+    api: https://gitea.thelocal.cf/api/v1
+    download: https://gitea.thelocal.cf

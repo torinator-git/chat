@@ -40,7 +40,7 @@ kos:
           - latest
           - "{{.Tag}}"
           - "{{if not .Prerelease}}stable{{end}}"
-      repository: ghcr.io/torinator/chat
+      repository: ghcr.io/torinator-git/chat
 
 archives:
     - format: tar.gz

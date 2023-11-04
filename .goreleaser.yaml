@@ -24,7 +24,7 @@ nfpms:
       homepage: https://gitea.thelocal.cf/torinator
       maintainer: pyscripter99 <ryder@retzlaff.family>
       description: An online self hosted, tor based chat medium
-      license: gpl-3.0
+      license: GPL-3.0-only
       formats:
           - "deb"
           - "rpm"
@@ -41,6 +41,15 @@ kos:
           - "{{.Tag}}"
           - "{{if not .Prerelease}}stable{{end}}"
       repository: ghcr.io/torinator-git/chat
+
+snapcrafts:
+    - title: Torinator Chat
+      publish: true
+      summary: An online self hosted, tor based chat medium
+      description: An open source Tor based chat medium built lightweight, and private.
+      confinement: strict
+      license: GPL-3.0-only
+      base: core18
 
 archives:
     - format: tar.gz

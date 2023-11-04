@@ -1,0 +1,52 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+# vim: set ts=2 sw=2 tw=0 fo=cnqoj
+
+before:
+    hooks:
+        - go mod tidy
+        - go generate ./...
+
+builds:
+    - main: ./cmd/chat
+      env:
+          - CGO_ENABLED=0
+      goos:
+          - linux
+          - windows
+          - darwin
+
+upx:
+    - enabled: true
+      compress: "5"
+
+nfpms:
+    - vendor: torinator
+      homepage: https://gitea.thelocal.cf/torinator
+      maintainer: pyscripter99 <ryder@retzlaff.family>
+      description: An online self hosted, tor based chat medium
+      license: gpl-3.0
+      formats:
+          - "deb"
+          - "rpm"
+          - "archlinux"
+
+archives:
+    - format: tar.gz
+      name_template: >-
+          {{ .ProjectName }}_
+          {{- title .Os }}_
+          {{- if eq .Arch "amd64" }}x86_64
+          {{- else if eq .Arch "386" }}i386
+          {{- else }}{{ .Arch }}{{ end }}
+          {{- if .Arm }}v{{ .Arm }}{{ end }}
+      format_overrides:
+          - goos: windows
+            format: zip
+
+changelog:
+    sort: asc
+    use: git
+    filters:
+        exclude:
+            - "^docs:"
+            - "^test:"
